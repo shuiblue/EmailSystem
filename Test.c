@@ -69,6 +69,15 @@ void setup() {
   printf("chuck: %d\n",chuck);
 }
 
+
+
+void
+rjhEnableForwarding() 
+{
+  setClientForwardReceiver(rjh, chuck);
+}
+
+
 int
 main (void)
 { 

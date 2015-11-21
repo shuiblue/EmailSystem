@@ -22,3 +22,5 @@ void test();
 void setup();
 
 int main();
+
+void rjhEnableForwarding();

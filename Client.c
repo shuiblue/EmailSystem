@@ -61,6 +61,13 @@ incoming (CLIENT client, EMAIL msg)
   //end decrypt
 
   deliver (client, msg);
+  int fwreceiver = getClientForwardReceiver(client);
+  if (fwreceiver) {
+    
+    setEmailTo(msg, fwreceiver);  
+    forward (client, msg);
+    
+  }
 }
 
 CLIENT createClient(char *name) {
