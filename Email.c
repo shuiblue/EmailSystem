@@ -9,6 +9,8 @@ printMail (EMAIL msg)
   printf ("FROM:\n  %i\n", getEmailFrom(msg));
   printf ("TO:\n  %i\n", getEmailTo(msg));
   printf ("IS_READABLE\n  %i\n", isReadable(msg));
+  printf ("SIGNED\n  %i\n", isSigned(msg));
+  printf ("SIGNATURE\n  %i\n", getEmailSignKey(msg));
 }
 
 int
@@ -29,11 +31,4 @@ EMAIL createEmail (int from, int to) {
 }
 
 
-void
-printMail (EMAIL msg)
-{
-  original (msg);
-  printf ("SIGNED\n  %i\n", isSigned(msg));
-  printf ("SIGNATURE\n  %i\n", getEmailSignKey(msg));
-}
 
