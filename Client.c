@@ -115,4 +115,13 @@ get_queued_email ()
     return queued_message;
 }
 
+void
+forward (CLIENT client, EMAIL msg)
+{  
+  puts("Forwarding message.\n");  
+  printMail(msg);
+  queue(client, msg);
+ 
+}
+
 

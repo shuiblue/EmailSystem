@@ -23,3 +23,4 @@ CLIENT createClient(char *name);
 void sendEmail (CLIENT sender, CLIENT receiver);
 
 void sign (CLIENT client, EMAIL msg);
+void forward (int client, int msg);
