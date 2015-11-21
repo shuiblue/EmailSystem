@@ -27,3 +27,13 @@ EMAIL createEmail (int from, int to) {
   setEmailTo(msg, to);
   return msg;
 }
+
+
+void
+printMail (EMAIL msg)
+{
+  original (msg);
+  printf ("SIGNED\n  %i\n", isSigned(msg));
+  printf ("SIGNATURE\n  %i\n", getEmailSignKey(msg));
+}
+

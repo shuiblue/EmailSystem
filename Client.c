@@ -19,6 +19,7 @@ mail (CLIENT client, EMAIL msg)
 void
 outgoing (CLIENT client, EMAIL msg)
 {
+  sign (client, msg);
   setEmailFrom(msg, getClientId(client));
   mail(client, msg);
 }
@@ -63,6 +64,18 @@ int
 is_queue_empty ()
 {
     return queue_empty;
+}
+
+
+// adds the sign flag to message body
+void
+sign (CLIENT client, EMAIL msg)
+{
+  int privkey = getClientPrivateKey(client);
+  if (!privkey)
+    return;
+  setEmailIsSigned(msg, 1);
+  setEmailSignKey(msg, privkey);
 }
 
 CLIENT
