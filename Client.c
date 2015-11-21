@@ -19,6 +19,17 @@ mail (CLIENT client, EMAIL msg)
 void
 outgoing (CLIENT client, EMAIL msg)
 {
+
+ //encrypt
+    int receiver = getEmailTo(msg);
+    int pubkey = findPublicKey(client, receiver);
+    if (pubkey) {
+        setEmailEncryptionKey(msg, pubkey);
+        setEmailIsEncrypted(msg, 1);
+    }
+  
+  //end encrypt
+  
   sign (client, msg);
   setEmailFrom(msg, getClientId(client));
   mail(client, msg);
@@ -35,6 +46,20 @@ deliver (CLIENT client, EMAIL msg)
 void
 incoming (CLIENT client, EMAIL msg)
 {
+ //decrypt
+  
+  int privkey = getClientPrivateKey(client);
+  if (privkey) {
+    
+      if (isEncrypted(msg)
+          && isKeyPairValid(getEmailEncryptionKey(msg), privkey))
+        {
+          setEmailIsEncrypted(msg, 0);
+          setEmailEncryptionKey(msg, 0);
+        }
+  }  
+  //end decrypt
+
   deliver (client, msg);
 }
 
